@@ -24,22 +24,22 @@ void Tree<T>::insert(T value){
         return;
     }
     TreeNode<T> *node = this->root;
-    while ( (node->data <  value && node->left != nullptr) || 
-            (node->data >= value && node->left != nullptr) ){
-        if(node->data <  value) node = node->left;
+    while ( (value <  node->data && node->left != nullptr) || 
+            (value >= node->data && node->right != nullptr) ){
+        if(value <  node->data) node = node->left;
         else node = node->right;
     }
-    if(node->data <  value) node->left = new TreeNode<T>(value);
+    if(value <  node->data) node->left = new TreeNode<T>(value);
     else node->right = new TreeNode<T>(value);
 }
 template <class T>
-void Tree<T>::remove(T value){
+void Tree<T>::remove(const T value){
     if(root == nullptr) return;
     TreeNode<T> *node = root;
     TreeNode<T> *prev = nullptr;
     while(node != nullptr && node->data != value){
         prev = node;
-        if(node->data <  value) node = node->left;
+        if(value <  node->data) node = node->left;
         else node = node->right;
     }
     if(node == nullptr) return;
@@ -55,35 +55,43 @@ void Tree<T>::remove(T value){
         delete node;
         return;
     }
-    // buscar el nodo para reemplazar y desacoplarlo del arbol
-    TreeNode<T> *leaf = node;
-    TreeNode<T> *prevLeaf = prev;
-    if(leaf->left != nullptr){
-        prevLeaf = leaf;
-        leaf = leaf->left;
-        while(leaf->right != nullptr){
+    auto replaceNode = [&prev,&value](TreeNode<T> *replace){
+        if(value < prev->data) prev->left = replace;
+        else prev->right = replace;
+    };
+    TreeNode<T>* leaf = nullptr;
+    if(node->left != nullptr){
+        leaf = node->left;
+        if(leaf->right == nullptr){
+            replaceNode(leaf);
+            leaf->right = node->right;
+            delete node;
+            return;
+        }
+        TreeNode<T>* prevLeaf = nullptr;
+        while( leaf->right != nullptr){
             prevLeaf = leaf;
             leaf = leaf->right;
         }
         prevLeaf->right = nullptr;
     }
-    else if(leaf->right != nullptr){
-        prevLeaf = leaf;
-        leaf = leaf->right;
-        while(leaf->left != nullptr){
+    if(node->right != nullptr){
+        leaf = node->right;
+        if(leaf->left == nullptr){
+            replaceNode(leaf);
+            leaf->left = node->left;
+            delete node;
+            return;
+        }
+        TreeNode<T>* prevLeaf = nullptr;
+        while( leaf->left != nullptr){
             prevLeaf = leaf;
             leaf = leaf->left;
         }
         prevLeaf->left = nullptr;
     }
+    replaceNode(leaf);
     leaf->left = node->left;
     leaf->right= node->right;
-    if(prev == nullptr){
-        root = leaf;
-        delete node;
-        return
-    }
-    if(value < prev->data) prev->left = leaf;
-    else prev->right = leaf;
     delete node;
 }
