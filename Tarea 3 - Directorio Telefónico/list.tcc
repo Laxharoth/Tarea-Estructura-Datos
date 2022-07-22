@@ -29,7 +29,14 @@ LinkedList<T>::~LinkedList(){
 }
 template<class T>
 LinkedList<T>::LinkedList():head(nullptr),size(0){};
-
+template<class T>
+LinkedList<T>::LinkedList(const LinkedList<T> &original){
+    const Node<T> *iter = original.head;
+    while(iter != nullptr){
+        this->insert(iter->data);
+        iter = iter->next;
+    }
+}
 template<class T>
 ListIterator<T> LinkedList<T>::begin(){
     return ListIterator<T>(this->head);

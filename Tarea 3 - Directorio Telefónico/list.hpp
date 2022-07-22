@@ -35,6 +35,10 @@ struct LinkedList{
     ListIterator<T> begin();
     ListIterator<T> end();
     LinkedList();
+    // copy constructor
+    // para evitar que al hacer una copia de la lista por asignacion.
+    // el destructor elimine los nodos de la lista original.
+    LinkedList(const LinkedList<T> &copy);
     ~LinkedList();
     private:
     Node<T> *tail;
