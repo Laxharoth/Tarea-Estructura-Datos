@@ -41,7 +41,6 @@ int main(){
                 case 3: solicitaTelefonoParaModificar(myDirectorio);break;
                 //4.- Listado de todos los suscriptores.
                 case 4: directorio::printEntradas(myDirectorio);
-                printf("end print");
                 enterPause();
                 break;
                 //5.- Consulta de suscriptores.
