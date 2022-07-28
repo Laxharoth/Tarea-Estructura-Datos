@@ -56,7 +56,7 @@ void main_menu(Tree<IntegranteFamilia> &tree){
     while(true){
         printf("Seleccione la opcion que desea\n");
         printf("1.- Inicializar arbol\n");
-        printf("2.- Mostrar la información de todos los parientes de sexo masculino\n");
+        printf("2.- Mostrar la informacion de todos los parientes de sexo masculino\n");
         printf("3.- Mostrar los nombres de los tatarabuelos\n");
         printf("0.- Salir\n");
         printf("\nseleccion:");
