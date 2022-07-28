@@ -6,8 +6,47 @@ TreeNode<T>::TreeNode(T data) : data(data), left(nullptr), right(nullptr) {}
 template <class T>
 Tree<T>::Tree():root(nullptr) { }
 template <class T>
+Tree<T>::Tree(const Tree<T> &copy){
+    Tree<T> *that = this;
+    copy.levelorder([that](TreeNode<T> *node){ that->insert(node->data); });
+}
+template <class T>
 Tree<T>::~Tree() {
     clear(root);
+}
+template <class T>
+void f_preorder( void (*callback)(TreeNode<T> *node) , TreeNode<T> *curr){
+    if(curr == nullptr) return;
+    callback(curr);
+    f_preorder<T>(callback, curr->left);
+    f_preorder<T>(callback, curr->right);
+}
+template <class T>
+void f_inorder( void (*callback)(TreeNode<T> *node) , TreeNode<T> *curr){
+    if(curr == nullptr) return;
+    f_inorder<T>(callback, curr->left);
+    callback(curr);
+    f_inorder<T>(callback, curr->right);
+}
+template <class T>
+void f_postorder( void (*callback)(TreeNode<T> *node) , TreeNode<T> *curr){
+    if(curr == nullptr) return;
+    f_postorder<T>(callback, curr->left);
+    f_postorder<T>(callback, curr->right);
+    callback(curr);
+}
+template <class T>
+void f_levelorder( void (*callback)(TreeNode<T> *node) , TreeNode<T> *root){
+    std::queue<TreeNode<T>*> nodes;
+    nodes.push(root);
+    while(!nodes.empty()){
+        TreeNode<T> *curr = nodes.front();
+        nodes.pop();
+        if(curr == nullptr) continue;
+        callback(curr);
+        nodes.push(curr->left);
+        nodes.push(curr->right);
+    }
 }
 template <class T>
 void Tree<T>::clear(TreeNode<T> *node){
@@ -16,6 +55,14 @@ void Tree<T>::clear(TreeNode<T> *node){
     this->clear(node->right);
     delete node;
 }
+template <class T>
+void Tree<T>::preorder( void (*callback)(TreeNode<T> *node)){ f_preorder( callback, root ); }
+template <class T>
+void Tree<T>::inorder( void (*callback)(TreeNode<T> *node) ){ f_inorder(callback, root); }
+template <class T>
+void Tree<T>::postorder(void (*callback)(TreeNode<T> *node)){ f_postorder(callback, root); }
+template <class T>
+void Tree<T>::levelorder(void (*callback)(TreeNode<T> *node)){ f_levelorder(callback, root); }
 
 template <class T>
 void Tree<T>::insert(T value){
