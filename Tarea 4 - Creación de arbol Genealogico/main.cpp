@@ -45,7 +45,6 @@ int main(int argc, char* argv[]){
     for (size_t i = 0; i < 15; i++){
         tree.insert(IntegranteFamilia{insert[i],title[i]});
     }
-    // tree.levelorder( [](TreeNode<IntegranteFamilia> *node){ std::cout << node->data.nombre << std::endl; }) ;
     main_menu(tree);
 }
 void set_STREAM(){
