@@ -80,7 +80,7 @@ void main_menu(Tree<IntegranteFamilia> &tree){
 
 void get_IntegranteFamilia(TreeNode<IntegranteFamilia> *nodo){
     IntegranteFamilia &familiar = nodo->data;
-    printf("Ingrese la información (%s)",familiar.nombre);
+    printf("Ingrese la informacion (%s)",familiar.nombre.c_str());
     printf("Nombre:");
     get_string(familiar.nombre);
     printf("Fecha de Nacimiento:");

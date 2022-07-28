@@ -28,8 +28,8 @@ void printTararabuelo(Tree<IntegranteFamilia> &tree){
 }
 void printIntegranteFamilia(const IntegranteFamilia& integrante){
     printf("************************\n");
-    printf("* Nombre : %s\n", integrante.nombre);
-    printf("* Fecha Nacimiento: %s\n", integrante.fechaNacimiento);
-    printf("* Lugar Nacimiento: %s\n", integrante.lugarNacimiento);
+    printf("* Nombre : %s\n", integrante.nombre.c_str());
+    printf("* Fecha Nacimiento: %s\n", integrante.fechaNacimiento.c_str());
+    printf("* Lugar Nacimiento: %s\n", integrante.lugarNacimiento.c_str());
     printf("* * *\n");
 }
