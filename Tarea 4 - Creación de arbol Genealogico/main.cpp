@@ -28,21 +28,27 @@ int main(int argc, char* argv[]){
             STREAM = file.get();
     }
 
-    int insert[15]{
-        8,
-        4,12,
-        2,6,10,14,
-        1,3,5,7,
-        9,11,13,15};
-    string title[15]{
+    int insert[31]{
+                          16,
+              8,                        24,
+         4,        12,            20,         28,
+      2,   6,    10,  14,      18,  22,   26,   30,
+    1,  3,5, 7,  9,11,13,15, 17,19,21,23,25,27,29, 31
+              
+        };
+    string title[31]{
         "Hijo",
-        "Mama","Papa",
-        "Abuela materna", "Abuelo materno", "Abuela paterno", "Abuelo paterno",
-            "Tatara Abuela materna materna", "Tatara Abuelo materno materna", "Tatara Abuela materna paterno", "Tatara Abuelo materno paterno",
-            "Tatara Abuela paterno materna", "Tatara Abuelo paterno materna", "Tatara Abuela paterno paterno", "Tatara Abuelo paterno paterno",
+            "Mama","Papa",
+                "Abuela materna", "Abuelo materno", "Abuela paterna", "Abuelo paterno",
+                    "Bisabuela materna materna", "Bisabuelo materno materno", "Bisabuela materna paterna", "Bisabuelo materno paterno",
+                    "Bisabuela paterna materna", "Bisabuelo paterno materno", "Bisabuela paterna paterna", "Bisabuelo paterno paterno",
+                    "Tatara Abuela materna materna materna", "Tatara Abuelo materno materno materno", "Tatara Abuela materna materna paterna", "Tatara Abuelo materno materno paterno",
+                    "Tatara Abuela materna paterna materna", "Tatara Abuelo materno paterno materno", "Tatara Abuela materna paterna paterna", "Tatara Abuelo materno paterno paterno",
+                    "Tatara Abuela paterna materna materna", "Tatara Abuelo paterno materno materno", "Tatara Abuela paterna materna paterna", "Tatara Abuelo paterno materno paterno",
+                    "Tatara Abuela paterna paterna materna", "Tatara Abuelo paterno paterno materno", "Tatara Abuela paterna paterna paterna", "Tatara Abuelo paterno paterno paterno",
     };
     Tree<IntegranteFamilia> tree;
-    for (size_t i = 0; i < 15; i++){
+    for (size_t i = 0; i < 31; i++){
         tree.insert(IntegranteFamilia{insert[i],title[i]});
     }
     main_menu(tree);
