@@ -8,13 +8,13 @@ static long long next_numero_pedido = 0;
 
 struct PaquetePedido{
     string nombre_remitente;
-    string nomre_destinatario;
+    string nombre_destinatario;
     string estado_envio;
     string destino_direccion;
     PaquetePedido();
     PaquetePedido(
         string nombre_remitente,
-        string nomre_destinatario,
+        string nombre_destinatario,
         string estado_envio,
         string destino_direccion
     );
