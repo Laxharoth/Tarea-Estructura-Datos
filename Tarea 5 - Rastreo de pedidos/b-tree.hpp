@@ -11,27 +11,30 @@ using std::vector;
 #define GRADE 5
 #endif
 
+template <class T>
 class BTree;
-struct BNode;
 
+template <class T>
 struct BNode{
-    std::array<int, GRADE - 1> keys{};
-    std::array<BNode *, GRADE> children{nullptr};
+    std::array<T, GRADE - 1> keys{};
+    std::array<BNode<T> *, GRADE> children{nullptr};
     int inserted = 0;
     bool isLeaf{true};
-    BNode *parent = nullptr;
-    friend class BTree;
+    BNode<T> *parent = nullptr;
+    friend class BTree<T>;
 };
 
+template <class T>
 class BTree{
-    void insertInNode(int key, BNode *lowerChild, BNode *node);
+    void insertInNode(int key, BNode<T> *lowerChild, BNode<T> *node);
     public:
-    BNode *root = nullptr;
+    BNode<T> *root = nullptr;
     void insert(int key);
     int find(int key);
 };
 
-void orderInsert(int key, BNode *lowerChild, BNode *node);
+template <class T>
+void orderInsert(int key, BNode<T> *lowerChild, BNode<T> *node);
 
 #include "b-tree.tcc"
 #endif
