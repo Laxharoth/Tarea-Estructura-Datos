@@ -16,3 +16,4 @@ PaquetePedido::PaquetePedido(const PaquetePedido& other):
     numero_pedido(other.numero_pedido), 
     nombre_remitente(nombre_remitente),nombre_destinatario(nombre_destinatario),
     estado_envio(estado_envio),destino_direccion(destino_direccion){}
+PaquetePedido::PaquetePedido(long long numero_pedido):numero_pedido(numero_pedido){}
