@@ -7,6 +7,7 @@ static size_t III = 0;
 void aquivoi(){
     std::cout << ++III << ":" << " aquivoi" << std::endl;
 }
+BNode* divideNode(BNode *rightNode);
 
 void BTree::insertInNode(int key, BNode *lowerChild, BNode *node){
     if(node->inserted < GRADE - 1){
@@ -14,8 +15,8 @@ void BTree::insertInNode(int key, BNode *lowerChild, BNode *node){
         return;
     }
     BNode *rightSibling = node;
-    BNode *leftSibling  = divideNode(rightSibling, lowerChild);
-    
+    BNode *leftSibling  = divideNode(rightSibling);
+
     BNode *parent = node->parent;
     if(parent == nullptr){
         parent = new BNode();
@@ -42,8 +43,7 @@ void BTree::insertInNode(int key, BNode *lowerChild, BNode *node){
     // is in the middle
     insertInNode(key, leftSibling, parent);
 }
-// BUG - se pierden datos cuando hay varias diviciones de nodos
-BNode* BTree::divideNode(BNode *rightNode, BNode *newNode){
+BNode* divideNode(BNode *rightNode){
     const int start = 0;
     const int half = rightNode->inserted / 2;
     const int end = rightNode->inserted;
@@ -51,7 +51,7 @@ BNode* BTree::divideNode(BNode *rightNode, BNode *newNode){
     BNode *leftNode = new BNode();
     leftNode->inserted = 0;
     leftNode->parent = rightNode->parent;
-    leftNode->children[half]  = newNode;
+    leftNode->children[half]  = rightNode->children[half];
     static int divide_i = 0; 
     for(size_t i = start; i < half ; ++i){
         leftNode->keys[i] = rightNode->keys[i];
@@ -62,6 +62,8 @@ BNode* BTree::divideNode(BNode *rightNode, BNode *newNode){
     rightNode->children[end - half]  = rightNode->children[end];
     for(size_t i = half; i < end; ++i){
         rightNode->keys[i - half] = rightNode->keys[i];
+        // comienza con el nodo del medio el mismo nodo final del lado izquierdo
+        //   pero va a ser reemplazado por el nodo correcto
         rightNode->children[i - half] = rightNode->children[i];
         rightNode->inserted++;
     }

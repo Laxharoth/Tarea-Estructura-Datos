@@ -25,7 +25,6 @@ struct BNode{
 
 class BTree{
     void insertInNode(int key, BNode *lowerChild, BNode *node);
-    BNode* divideNode(BNode *rightNode, BNode *newNode);
     public:
     BNode *root = nullptr;
     void insert(int key);
