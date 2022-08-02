@@ -28,6 +28,7 @@ class BTree{
     public:
     BNode *root = nullptr;
     void insert(int key);
+    int find(int key);
 };
 
 void orderInsert(int key, BNode *lowerChild, BNode *node);

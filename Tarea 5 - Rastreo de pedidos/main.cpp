@@ -8,18 +8,6 @@ void printBTree(BTree &tree){
     printBNode(tree.root);
 }
 
-int findBKey(int key, BNode *node){
-    int i = 0;
-    while(node != nullptr){
-        while( i < node->inserted && key >= node->keys[i] ){ 
-            if(key == node->keys[i]) return node->keys[i];
-            ++i; 
-        }
-        node = node->children[i];
-    }
-    throw key;
-}
-
 static int IIII = 0;
 
 void printBNode(BNode *node){

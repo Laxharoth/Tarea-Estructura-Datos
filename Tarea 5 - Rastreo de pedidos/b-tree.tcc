@@ -110,3 +110,17 @@ void orderInsert(int key, BNode *lowerChild, BNode *node){
     node->children[position] = lowerChild;
     node->inserted++;
 }
+
+int BTree::find(int key){
+    int i = 0;
+    BNode *node = root;
+    while(node != nullptr){
+        while( i < node->inserted && key >= node->keys[i] ){ 
+            if(key == node->keys[i]) return node->keys[i];
+            ++i; 
+        }
+        node = node->children[i];
+        i = 0;
+    }
+    throw key;
+}
