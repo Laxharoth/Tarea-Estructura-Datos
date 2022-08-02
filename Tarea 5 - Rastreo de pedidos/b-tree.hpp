@@ -3,11 +3,7 @@
 #include <array>
 #include <queue>
 
-
-using std::vector;
-
-//TODO make it type specific on int then extend it to other types
-
+const int B_TREE_ERROR_NOT_FOUND = 0B10000001;
 #ifndef GRADE
 #define GRADE 5
 #endif
@@ -31,7 +27,7 @@ class BTree{
     public:
     BNode<T> *root = nullptr;
     void insert(T key);
-    int find(T key);
+    T& find(const T &key);
     void breathFirst(void (*callback)(BNode<T> *node));
     ~BTree();
 };

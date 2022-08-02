@@ -106,7 +106,7 @@ void orderInsert(T key, BNode<T> *lowerChild, BNode<T> *node){
 }
 
 template <class T>
-int BTree<T>::find(T key){
+T& BTree<T>::find(const T &key){
     int i = 0;
     BNode<T> *node = root;
     while(node != nullptr){
@@ -117,7 +117,7 @@ int BTree<T>::find(T key){
         node = node->children[i];
         i = 0;
     }
-    throw key;
+    throw B_TREE_ERROR_NOT_FOUND;
 }
 
 template <class T>
