@@ -82,7 +82,7 @@ void BTree<T>::insert(T key){
 }
 
 template <class T>
-void orderInsert(int key, BNode<T> *lowerChild, BNode<T> *node){
+void orderInsert(T key, BNode<T> *lowerChild, BNode<T> *node){
     static int key_1 = 0;
     if(node->inserted == 0){
         node->children[1] = node->children[0];
