@@ -27,17 +27,17 @@ struct BNode{
 
 template <class T>
 class BTree{
-    void insertInNode(int key, BNode<T> *lowerChild, BNode<T> *node);
+    void insertInNode(T key, BNode<T> *lowerChild, BNode<T> *node);
     public:
     BNode<T> *root = nullptr;
-    void insert(int key);
-    int find(int key);
+    void insert(T key);
+    int find(T key);
     void breathFirst(void (*callback)(BNode<T> *node));
     ~BTree();
 };
 
 template <class T>
-void orderInsert(int key, BNode<T> *lowerChild, BNode<T> *node);
+void orderInsert(T key, BNode<T> *lowerChild, BNode<T> *node);
 
 #include "b-tree.tcc"
 #endif

@@ -29,7 +29,7 @@ BNode<T>* divideNode(BNode<T> *rightNode){
 }
 
 template <class T>
-void BTree<T>::insertInNode(int key, BNode<T> *lowerChild, BNode<T> *node){
+void BTree<T>::insertInNode(T key, BNode<T> *lowerChild, BNode<T> *node){
     if(node->inserted < GRADE - 1){
         orderInsert(key, lowerChild, node);
         return;
@@ -65,7 +65,7 @@ void BTree<T>::insertInNode(int key, BNode<T> *lowerChild, BNode<T> *node){
 }
 
 template <class T>
-void BTree<T>::insert(int key){
+void BTree<T>::insert(T key){
     if(root == nullptr){
         root = new BNode<T>();
         root->isLeaf = true;
@@ -106,7 +106,7 @@ void orderInsert(int key, BNode<T> *lowerChild, BNode<T> *node){
 }
 
 template <class T>
-int BTree<T>::find(int key){
+int BTree<T>::find(T key){
     int i = 0;
     BNode<T> *node = root;
     while(node != nullptr){
