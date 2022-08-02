@@ -12,6 +12,7 @@ struct PaquetePedido{
     string estado_envio;
     string destino_direccion;
     PaquetePedido();
+    PaquetePedido(bool next);
     PaquetePedido(long long numero_pedido);
     PaquetePedido(
         string nombre_remitente,
@@ -19,7 +20,6 @@ struct PaquetePedido{
         string estado_envio,
         string destino_direccion
     );
-    PaquetePedido(const PaquetePedido& other);
     bool operator<=(const PaquetePedido &other) const;
     bool operator>=(const PaquetePedido &other) const;
     bool operator<(const PaquetePedido &other) const;
