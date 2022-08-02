@@ -119,3 +119,28 @@ int BTree<T>::find(int key){
     }
     throw key;
 }
+
+template <class T>
+void BTree<T>::breathFirst(void (*callback)(BNode<T> *node)){
+    std::queue<BNode<T>*> queue;
+    std::queue<BNode<T>*> aux;
+    queue.push(root);
+    while(!(queue.empty())){
+        while(!(queue.empty())){
+            BNode<T> *node = queue.front();
+            queue.pop();
+            if(node == nullptr) continue;
+            int i;
+            for(i = 0; i < node->inserted; ++i){
+                aux.push(node->children[i]);
+            }
+            aux.push(node->children[i]);
+            callback(node);
+        }
+        std::swap(queue, aux);
+    }
+}
+template <class T>
+BTree<T>::~BTree(){
+    this->breathFirst( [](BNode<T> *node){ delete node;} );
+}

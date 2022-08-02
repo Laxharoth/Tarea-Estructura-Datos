@@ -1,7 +1,8 @@
 #ifndef B_TREE_HPP
 #define B_TREE_HPP
-#include <vector>
 #include <array>
+#include <queue>
+
 
 using std::vector;
 
@@ -31,6 +32,8 @@ class BTree{
     BNode<T> *root = nullptr;
     void insert(int key);
     int find(int key);
+    void breathFirst(void (*callback)(BNode<T> *node));
+    ~BTree();
 };
 
 template <class T>
